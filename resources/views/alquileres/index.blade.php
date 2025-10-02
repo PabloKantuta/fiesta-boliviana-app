@@ -46,7 +46,7 @@
                                     <td>{{ number_format($alquiler->total, 2) }}</td>
                                     <td>
                                         <a href="{{ route('alquileres.show', $alquiler) }}" class="btn btn-sm btn-info">Ver</a>
-                                        <a href="#" class="btn btn-sm btn-warning">Editar</a>
+                                        <!--<a href="#" class="btn btn-sm btn-warning">Editar</a>-->
                                     </td>
                                 </tr>
                             @endforeach

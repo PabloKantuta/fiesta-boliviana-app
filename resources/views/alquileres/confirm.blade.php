@@ -50,6 +50,18 @@
                         <h4 class="font-bold"><strong>Total a Pagar:</strong> {{ number_format($alquilerData['total'], 2) }} Bs.</h4>
                     </div>
 
+                    <div class="mt-4">
+                        <h4 class="text-lg font-bold">Componentes del Paquete:</h4>
+                        <ul class="list-group">
+                            @foreach ($alquilerData['paquete']->items as $item)
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    {{ $item->nombre }}
+                                    <span class="badge bg-primary rounded-pill">{{ $item->pivot->cantidad_por_paquete }} unidades</span>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+
                     <hr class="my-4">
 
                     {{-- BOTONES DE ACCIÓN --}}

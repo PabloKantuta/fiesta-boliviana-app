@@ -70,14 +70,23 @@ class AlquilerController extends Controller
             return back()->withInput()->withErrors(['fecha_entrega_prevista' => 'El paquete seleccionado ya está reservado para las fechas indicadas.']);
         }
         
-        // 4. --- CÁLCULOS DE COSTOS ---
-        $paquete = Paquete::find($validatedData['paquete_id']);
-        $precio_bidiario = 250.00; // PRECIO DE EJEMPLO
+        $paquete = Paquete::with('items')->find($validatedData['paquete_id']);
+
+        // 4. --- CÁLCULOS DE COSTOS  ---
+        // Buscamos el precio en la base de datos
+        $precioInfo = \App\Models\PrecioPaquete::where('paquete_id', $validatedData['paquete_id'])
+                                            ->where('tipo', 'alquiler_bidiario')
+                                            ->first(); // Obtenemos el primer precio que coincida
+
+        // Verificamos si se encontró un precio
+        if (!$precioInfo) {
+            return back()->withInput()->withErrors(['paquete_id' => 'El paquete seleccionado no tiene un precio de alquiler configurado.']);
+        }
+        
+        $precio_bidiario = $precioInfo->monto; // Usamos el monto de la BD
 
         $subtotal = $precio_bidiario * $validatedData['num_bloques_contratados'];
         $total = $subtotal + $validatedData['costo_transporte'];
-
-        // (Hemos eliminado el bloque de cálculo de fechas que estaba repetido aquí)
 
         // Juntamos todos los datos en un array para manejarlos fácilmente
         $alquilerData = array_merge($validatedData, [

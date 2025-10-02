@@ -27,4 +27,12 @@ class Alquiler extends Model
     {
         return $this->hasMany(AlquilerDetalle::class);
     }
+
+    /**
+     * Define la relación: Un Alquiler tiene muchos activos asignados.
+     */
+    public function activosAsignados()
+    {
+        return $this->belongsToMany(Activo::class, 'alquiler_asignacion_activo', 'alquiler_id', 'activo_id');
+    }
 }

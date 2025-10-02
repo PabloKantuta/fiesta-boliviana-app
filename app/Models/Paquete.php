@@ -10,10 +10,23 @@ class Paquete extends Model
 {
     use HasFactory, SoftDeletes;
 
-    /**
-     * The attributes that are not mass assignable.
-     *
-     * @var array
-     */
     protected $guarded = [];
+
+    /**
+     * Define la relación: Un Paquete puede tener muchos precios.
+     */
+    public function precios()
+    {
+        return $this->hasMany(PrecioPaquete::class);
+    }
+
+    /**
+     * Define la relación: Un Paquete se compone de muchos Items.
+     */
+    public function items()
+    {
+        // belongsToMany(Modelo, tabla_pivote, fk_propia, fk_relacionada)
+        return $this->belongsToMany(Item::class, 'item_paquete', 'paquete_id', 'item_id')
+                    ->withPivot('cantidad_por_paquete'); // Importante para obtener la cantidad
+    }
 }

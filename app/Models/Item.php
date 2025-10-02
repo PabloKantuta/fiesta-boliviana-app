@@ -16,4 +16,9 @@ class Item extends Model
      * @var array
      */
     protected $guarded = [];
+    
+    public function activos()
+    {
+        return $this->hasMany(Activo::class);
+    }
 }
