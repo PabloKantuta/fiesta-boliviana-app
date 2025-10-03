@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">Reportes</x-slot>
-    <x-slot name="title">Reportes - Fiesta Bolivia</x-slot>
+    <x-slot name="title">Reportes - Sr Fiesta</x-slot>
 
     <!-- Report Type Selector -->
     <div class="bg-white rounded-2xl shadow-card p-6 border border-gray-100 mb-6">

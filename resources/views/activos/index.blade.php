@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">Inventario de Activos</x-slot>
-    <x-slot name="title">Activos - Fiesta Bolivia</x-slot>
+    <x-slot name="title">Activos - Sr Fiesta</x-slot>
 
     <!-- Toolbar -->
     <x-toolbar 

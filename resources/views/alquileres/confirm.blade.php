@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">Confirmar Nuevo Alquiler</x-slot>
-    <x-slot name="title">Confirmar Alquiler - Fiesta Bolivia</x-slot>
+    <x-slot name="title">Confirmar Alquiler - Sr Fiesta</x-slot>
 
     <!-- Alert de Confirmación -->
     <div class="bg-blue-50 border border-blue-200 rounded-2xl p-6 mb-6">

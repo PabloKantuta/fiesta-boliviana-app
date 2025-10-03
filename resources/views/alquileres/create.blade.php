@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">Registrar Nuevo Alquiler</x-slot>
-    <x-slot name="title">Crear Alquiler - Fiesta Bolivia</x-slot>
+    <x-slot name="title">Crear Alquiler - Sr Fiesta</x-slot>
 
     <!-- Form Container -->
     <div class="bg-white rounded-2xl shadow-card p-8 border border-gray-100">
@@ -86,7 +86,7 @@
                 <!-- Número de Bloques -->
                 <div>
                     <label for="num_bloques_contratados" class="block text-sm font-medium text-gray-700 mb-2">
-                        Número de Bloques Contratados <span class="text-red-500">*</span>
+                        Numero de Bi-Diarios <span class="text-red-500">*</span>
                     </label>
                     <input 
                         type="number" 

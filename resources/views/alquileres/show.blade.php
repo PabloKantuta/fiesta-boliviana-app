@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">Detalle de Alquiler #{{ $alquiler->id ?? 'ALQ-2025-089' }}</x-slot>
-    <x-slot name="title">Alquiler {{ $alquiler->id ?? 'ALQ-2025-089' }} - Fiesta Bolivia</x-slot>
+    <x-slot name="title">Alquiler {{ $alquiler->id ?? 'ALQ-2025-089' }} - Sr Fiesta</x-slot>
 
     <!-- Back Button -->
     <div class="mb-6">
@@ -144,66 +144,66 @@
                 <h3 class="text-lg font-semibold text-gray-900 mb-4">Acciones</h3>
 
                 <div class="space-y-3">
-                    @if(isset($alquiler) && method_exists($alquiler, 'estado'))
+                    @if($alquiler->estado != 'cancelado' && $alquiler->estado != 'devuelto')
+                        <!-- Botón Cambiar Estado -->
                         @if($alquiler->estado == 'pendiente' || $alquiler->estado == 'reservado')
-                            <button 
-                                onclick="/* Marcar como entregado */"
-                                class="w-full inline-flex items-center justify-center px-4 py-2 bg-accent text-white font-medium rounded-lg hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
-                            >
-                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                                </svg>
-                                Marcar como Entregado
-                            </button>
+                            <form action="{{ route('alquileres.updateStatus', $alquiler) }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="estado" value="entregado">
+                                <button 
+                                    type="submit"
+                                    class="w-full inline-flex items-center justify-center px-4 py-2 bg-accent text-white font-medium rounded-lg hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 transition"
+                                >
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                    Marcar como Entregado
+                                </button>
+                            </form>
                         @elseif($alquiler->estado == 'entregado' || $alquiler->estado == 'activo')
-                            <button 
-                                onclick="/* Marcar como devuelto */"
-                                class="w-full inline-flex items-center justify-center px-4 py-2 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                            >
-                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"/>
-                                </svg>
-                                Marcar como Devuelto
-                            </button>
+                            <form action="{{ route('alquileres.updateStatus', $alquiler) }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="estado" value="devuelto">
+                                <button 
+                                    type="submit"
+                                    class="w-full inline-flex items-center justify-center px-4 py-2 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition"
+                                >
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"/>
+                                    </svg>
+                                    Marcar como Devuelto
+                                </button>
+                            </form>
                         @endif
-                    @else
-                        <button 
-                            onclick="/* Cambiar estado */"
-                            class="w-full inline-flex items-center justify-center px-4 py-2 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                        >
-                            Cambiar Estado
-                        </button>
                     @endif
 
-                    <button 
-                        onclick="/* Imprimir contrato */"
-                        class="w-full inline-flex items-center justify-center px-4 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                    <!-- Botón Imprimir Contrato -->
+                    <a 
+                        href="{{ route('alquileres.print', $alquiler) }}"
+                        target="_blank"
+                        class="w-full inline-flex items-center justify-center px-4 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition"
                     >
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
                         </svg>
                         Imprimir Contrato
-                    </button>
+                    </a>
 
-                    <button 
-                        onclick="/* Editar alquiler */"
-                        class="w-full inline-flex items-center justify-center px-4 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                    >
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                        </svg>
-                        Editar Alquiler
-                    </button>
-
-                    <button 
-                        onclick="/* Cancelar alquiler */"
-                        class="w-full inline-flex items-center justify-center px-4 py-2 border border-danger text-danger font-medium rounded-lg hover:bg-danger hover:text-white focus:outline-none focus:ring-2 focus:ring-danger focus:ring-offset-2 transition"
-                    >
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                        </svg>
-                        Cancelar Alquiler
-                    </button>
+                    <!-- Botón Cancelar Alquiler (solo si no está cancelado o devuelto) -->
+                    @if($alquiler->estado != 'cancelado' && $alquiler->estado != 'devuelto')
+                        <form action="{{ route('alquileres.cancel', $alquiler) }}" method="POST" onsubmit="return confirm('¿Está seguro de que desea cancelar este alquiler? Esta acción no se puede deshacer.');">
+                            @csrf
+                            <button 
+                                type="submit"
+                                class="w-full inline-flex items-center justify-center px-4 py-2 border border-danger text-danger font-medium rounded-lg hover:bg-danger hover:text-white focus:outline-none focus:ring-2 focus:ring-danger focus:ring-offset-2 transition"
+                            >
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                </svg>
+                                Cancelar Alquiler
+                            </button>
+                        </form>
+                    @endif
                 </div>
             </div>
 

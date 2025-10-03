@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlquilerController;
+use App\Http\Controllers\PaqueteController;
 use App\Http\Controllers\ProfileController;
 
 // Ruta principal - redirige según autenticación
@@ -33,7 +34,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/alquileres', [AlquilerController::class, 'store'])->name('alquileres.store');
     Route::get('/alquileres/{alquiler}', [AlquilerController::class, 'show'])->name('alquileres.show'); 
     Route::post('/alquileres/{alquiler}/estado', [AlquilerController::class, 'updateStatus'])->name('alquileres.updateStatus');
+    Route::post('/alquileres/{alquiler}/cancelar', [AlquilerController::class, 'cancel'])->name('alquileres.cancel');
+    Route::get('/alquileres/{alquiler}/imprimir', [AlquilerController::class, 'print'])->name('alquileres.print');
     Route::post('/alquileres/previsualizar', [AlquilerController::class, 'preview'])->name('alquileres.preview');
+
+    // --- RUTAS DE PAQUETES (CATÁLOGO) ---
+    Route::get('/paquetes', [PaqueteController::class, 'index'])->name('paquetes.index');
+    Route::get('/paquetes/{paquete}', [PaqueteController::class, 'show'])->name('paquetes.show');
 
 });
 

@@ -198,4 +198,32 @@ class AlquilerController extends Controller
     {
         //
     }
+
+    /**
+     * Cancel the rental
+     */
+    public function cancel(Alquiler $alquiler)
+    {
+        // Solo se puede cancelar si no está en estado devuelto o cancelado
+        if (in_array($alquiler->estado, ['devuelto', 'cancelado'])) {
+            return back()->with('error', 'No se puede cancelar un alquiler que ya está devuelto o cancelado.');
+        }
+
+        $alquiler->estado = 'cancelado';
+        $alquiler->save();
+
+        return redirect()->route('alquileres.index')->with('success', 'Alquiler cancelado correctamente.');
+    }
+
+    /**
+     * Print rental contract
+     */
+    public function print(Alquiler $alquiler)
+    {
+        // Cargamos las relaciones necesarias
+        $alquiler->load('cliente', 'detalles.paquete.items');
+
+        // Retornamos una vista específica para imprimir
+        return view('alquileres.print', compact('alquiler'));
+    }
 }

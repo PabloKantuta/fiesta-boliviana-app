@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Registro - Fiesta Bolivia</title>
+    <title>Registro - Sr Fiesta</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -18,7 +18,7 @@
                     <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
                 </svg>
             </div>
-            <h1 class="text-3xl font-bold text-white mb-2">Fiesta Bolivia</h1>
+            <h1 class="text-3xl font-bold text-white mb-2">Sr Fiesta</h1>
             <p class="text-gray-400">Crear Nueva Cuenta</p>
         </div>
 
@@ -131,7 +131,7 @@
         <!-- Footer -->
         <div class="mt-8 text-center">
             <p class="text-gray-500 text-sm">
-                &copy; {{ date('Y') }} Fiesta Bolivia. Todos los derechos reservados.
+                &copy; {{ date('Y') }} Sr Fiesta. Todos los derechos reservados.
             </p>
         </div>
     </div>

@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">Listas de Precios</x-slot>
-    <x-slot name="title">Precios - Fiesta Bolivia</x-slot>
+    <x-slot name="title">Precios - Sr Fiesta</x-slot>
 
     <!-- Toolbar -->
     <x-toolbar 

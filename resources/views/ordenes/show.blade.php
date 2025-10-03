@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">Detalle de Orden Logística</x-slot>
-    <x-slot name="title">Orden ORD-2025-045 - Fiesta Bolivia</x-slot>
+    <x-slot name="title">Orden ORD-2025-045 - Sr Fiesta</x-slot>
 
     <!-- Back Button -->
     <div class="mb-6">

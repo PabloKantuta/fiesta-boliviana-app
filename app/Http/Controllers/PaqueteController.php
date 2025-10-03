@@ -12,7 +12,7 @@ class PaqueteController extends Controller
      */
     public function index()
     {
-        $paquetes = Paquete::all();
+        $paquetes = Paquete::with(['items', 'precios'])->get();
         
         return view('paquetes.index', compact('paquetes'));
     }

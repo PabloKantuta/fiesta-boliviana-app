@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">Logística y Órdenes</x-slot>
-    <x-slot name="title">Logística - Fiesta Bolivia</x-slot>
+    <x-slot name="title">Logística - Sr Fiesta</x-slot>
 
     <!-- Toolbar -->
     <x-toolbar 

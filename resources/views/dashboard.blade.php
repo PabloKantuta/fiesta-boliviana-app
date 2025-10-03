@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">Dashboard</x-slot>
-    <x-slot name="title">Dashboard - Fiesta Bolivia</x-slot>
+    <x-slot name="title">Dashboard - Sr Fiesta</x-slot>
 
     <!-- KPIs Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
