@@ -14,6 +14,17 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                'primary': '#2563eb',
+                'accent': '#22c55e',
+                'warning': '#f59e0b',
+                'danger': '#ef4444',
+                'dark-bg': '#0b1220',
+                'card-bg': '#0f172a',
+            },
+            boxShadow: {
+                'card': '0 10px 20px rgba(0, 0, 0, 0.25)',
+            },
         },
     },
 
